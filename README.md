@@ -1,4 +1,4 @@
 #Delhi Metro App
 
 
-<img src ="Initial_page.png">
+<img src ="initial_page.png">
