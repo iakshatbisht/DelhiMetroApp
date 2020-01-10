@@ -21,7 +21,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
-//import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPanel;
@@ -133,7 +132,7 @@ public class Initial_Page {
 						JOptionPane.showMessageDialog(null, "Error: unable to load driver class!");
 						e1.printStackTrace();
 					}
-					Connection con = (Connection)DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","system");
+					Connection con = (Connection)DriverManager.getConnection("jdbc:oracle:thin:@localhost:<port_number>:xe","Username","Password");
 					String query;
 					String search = "dmrc";
 					if(username.toLowerCase().indexOf(search.toLowerCase()) != -1) {
