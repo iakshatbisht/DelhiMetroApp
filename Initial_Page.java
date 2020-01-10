@@ -13,7 +13,6 @@ import oracle.jdbc.OracleResultSet;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -22,22 +21,24 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
-import javax.swing.LookAndFeel;
+//import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import java.awt.Toolkit;
 
 public class Initial_Page {
 
 	private JFrame frame;
 	static public JTextField txtSaasad;
-	static public JPasswordField passwordField;
-
-	/**
-	 * Launch the application.
-	 */
+	static public String username;
+	
 	Connection conn = null;
 	OraclePreparedStatement pst = null;	
 	OracleResultSet rs = null;
+  static JPasswordField passwordField;
+    
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,12 +52,10 @@ public class Initial_Page {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+	
 	public Initial_Page() {
 			LookAndFeelInfo lf[]=UIManager.getInstalledLookAndFeels();
-			try{
+			try{			
 				UIManager.setLookAndFeel(lf[1].getClassName());
 			}catch(Exception e) {
 				
@@ -64,60 +63,68 @@ public class Initial_Page {
 				initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 900, 600);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\aknit\\eclipse-workspace\\DBMS_Project\\USED_IMAGES\\dmrc.png"));
+		frame.setBounds(100, 100, 900, 650);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\aknit\\Desktop\\dmrc.png"));
-		
-		
-		JLabel lblNewLabel = new JLabel("DELHI METRO SHORTEST ROUTE");
-		lblNewLabel.setForeground(Color.black);
-		lblNewLabel.setFont(new Font("Lucida Sans", Font.BOLD, 28));
+		frame.setContentPane(new JLabel(resize(new ImageIcon("C:/Users/aknit/eclipse-workspace/DBMS_Project/USED_IMAGES/bg.jpg"), frame.getWidth(), frame.getHeight())));
+		JLabel lblNewLabel = new JLabel("THE DMRC PROTOTYPE");
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setFont(new Font("Monotyoe Corsiva", Font.BOLD, 28));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 62, 550, 102);
+		lblNewLabel.setBounds(153, 10, 550, 102);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		//lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Rahul\\Desktop\\DBMS_Project\\240px-Delhi_Metro_logo.svg.png"));
-		lblNewLabel_1.setBounds(550, 30, 280, 180);
-		lblNewLabel_1.setIcon(resize(new ImageIcon("C:\\\\Users\\\\aknit\\\\Desktop\\\\delhi-metro-rail-corporation.png"), lblNewLabel_1.getWidth(), lblNewLabel_1.getHeight()));
-		frame.getContentPane().add(lblNewLabel_1);
+		
+		SignIn_Page sip = new SignIn_Page();
+		
+		
+		  JLabel lblNewLabel_4 = new JLabel(""); 
+		  lblNewLabel_4.setBounds(480, 170, 356, 342); 
+		  lblNewLabel_4.setIcon(resize(new ImageIcon("C:/Users/aknit/eclipse-workspace/DBMS_Project/USED_IMAGES/metro.jpg"), lblNewLabel_4.getWidth(), lblNewLabel_4.getHeight()));
+		  frame.getContentPane().add(lblNewLabel_4);
+		 
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel.setBounds(37, 123, 396, 267);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		panel.setBackground(new Color(0,0,0,65));
+		
 		
 		JLabel lblNewLabel_2 = new JLabel("UserName :");
+		lblNewLabel_2.setBounds(22, 43, 130, 33);
+		panel.add(lblNewLabel_2);
 		lblNewLabel_2.setFont(new Font("Arial Narrow", Font.PLAIN, 25));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(60, 219, 166, 51);
-		frame.getContentPane().add(lblNewLabel_2);
+		lblNewLabel_2.setForeground(Color.white);
+		
 		
 		JLabel lblPassword = new JLabel("Password :");
+		lblPassword.setBounds(22, 117, 121, 33);
+		panel.add(lblPassword);
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setFont(new Font("Arial Narrow", Font.PLAIN, 25));
-		lblPassword.setBounds(60, 292, 166, 51);
-		frame.getContentPane().add(lblPassword);
+		lblPassword.setForeground(Color.white);
 		
 		txtSaasad = new JTextField();
+		txtSaasad.setBounds(176, 45, 186, 32);
+		panel.add(txtSaasad);
 		txtSaasad.setFont(new Font("Arial Narrow", Font.PLAIN, 20));
-		txtSaasad.setBounds(236, 219, 187, 51);
-		frame.getContentPane().add(txtSaasad);
 		txtSaasad.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setEchoChar('*');
-		passwordField.setBounds(236, 292, 187, 51);
-		frame.getContentPane().add(passwordField);
-		
 		JButton btnNewButton = new JButton("Log in");
-		Second second = new Second();
+		
+		btnNewButton.setBounds(124, 186, 130, 50);
+		panel.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				conn = ConnectionClass.dbconnect();
-				String username = txtSaasad.getText();
-				String passkey = passwordField.getText();
+				username = txtSaasad.getText();	
+				Second second = new Second();		
+				String passkey = new String(passwordField.getPassword());
 				try {
 					
 					try {
@@ -126,8 +133,16 @@ public class Initial_Page {
 						JOptionPane.showMessageDialog(null, "Error: unable to load driver class!");
 						e1.printStackTrace();
 					}
-					Connection con = (Connection)DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","SYSTEM#2429");
-					String query = "SELECT * FROM users where Username=? AND Passkey=?";
+					Connection con = (Connection)DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","system");
+					String query;
+					String search = "dmrc";
+					if(username.toLowerCase().indexOf(search.toLowerCase()) != -1) {
+						query = "SELECT * FROM admin where Username=? AND Password=?";
+					}
+					else {
+						query = "SELECT * FROM users_a where Username=? AND Password=?";
+
+					}
 					pst = (OraclePreparedStatement) con.prepareStatement(query);
 					pst.setString(1, username);
 					pst.setString(2, passkey);
@@ -152,16 +167,21 @@ public class Initial_Page {
 			}
 		});
 		btnNewButton.setFont(new Font("Lucida Sans", Font.PLAIN, 18));
-		btnNewButton.setBounds(164, 371, 166, 39);
-		frame.getContentPane().add(btnNewButton);
 		
-		JLabel lblNewLabel_3 = new JLabel("Don't have an account, create here..");
-		lblNewLabel_3.setFont(new Font("Arial Narrow", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(153, 496, 280, 37);
-		frame.getContentPane().add(lblNewLabel_3);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(176, 117, 186, 32);
+		panel.add(passwordField);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel_1.setBounds(37, 431, 396, 122);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		panel_1.setBackground(new Color(0,0,0,65));
 		
 		JButton btnSignIn = new JButton("Sign in");
-		SignIn_Page sip = new SignIn_Page();
+		btnSignIn.setBounds(110, 54, 149, 58);
+		panel_1.add(btnSignIn);
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					if(sip.isVisible()==true) {
@@ -172,15 +192,11 @@ public class Initial_Page {
 			}
 		});
 		btnSignIn.setFont(new Font("Lucida Sans", Font.PLAIN, 18));
-		btnSignIn.setBounds(433, 496, 280, 37);
-		frame.getContentPane().add(btnSignIn);
 		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\Rahul\\Desktop\\DBMS_Project\\c20c5b1f-5aa5-428e-89d9-18c6f4595604.png"));
-		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setBackground(Color.WHITE);
-		lblNewLabel_4.setBounds(60, 183, 403, 267);
-		frame.getContentPane().add(lblNewLabel_4);
+		JLabel lblNewLabel_3 = new JLabel("Don't have an account, create here..");
+		lblNewLabel_3.setBounds(37, 22, 323, 26);
+		panel_1.add(lblNewLabel_3);
+		lblNewLabel_3.setFont(new Font("Arial Narrow", Font.PLAIN, 20));
 	}
 	public static ImageIcon resize(ImageIcon im,int w,int h)
 	{
@@ -191,4 +207,5 @@ public class Initial_Page {
 	gd.dispose();
 	return new ImageIcon(bi);
 	}
+	
 }
