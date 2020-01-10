@@ -1,8 +1,4 @@
-<html>
-<head>
-<title> DelhiMetroApp </title>
-</head>
-<body> 
-<img src = ''>
-</body>
-</html>
+#Delhi Metro App
+
+
+<img src ="Initial_page.png" height="600" width ="300" >
