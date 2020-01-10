@@ -9,8 +9,8 @@
 
 *Main Portal*
 
-<img src ="third.png" height="400" width ="550" >
-<img src ="fourth.png" height="400" width ="550" >
+<img src ="third.png" height="300" width ="450" >
+<img src ="fourth.png" height="300" width ="450" >
 
 *Admin Page*
 
