@@ -7,11 +7,11 @@
 
 <img src ="Signin -page.png" height="400" width ="550" >
 
+*Main Portal*
 
 <img src ="third.png" height="400" width ="550" >
-
-
 <img src ="fourth.png" height="400" width ="550" >
 
+*Admin Page*
 
 <img src ="fifth.png" height="400" width ="550" >
